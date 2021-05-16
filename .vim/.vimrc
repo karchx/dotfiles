@@ -1,0 +1,2 @@
+so ~/.vim/plugins.vim
+

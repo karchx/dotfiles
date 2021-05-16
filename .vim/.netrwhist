@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/stiveun/Desktop/sdltest'
+let g:netrw_dirhist_6='/home/stiveun/.config/qtile/settings'
+let g:netrw_dirhist_5='/home/stiveun/.config/qtile'
+let g:netrw_dirhist_4='/home/stiveun/.config/qtile/settings'
+let g:netrw_dirhist_3='/home/stiveun/.config/qtile'
+let g:netrw_dirhist_2='/home/stiveun/.config/alacritty'
+let g:netrw_dirhist_1='/home/stiveun/.config'
