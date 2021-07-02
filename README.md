@@ -38,13 +38,6 @@ esta línea, debería estar dentro de una lista llamada *primary_widgets*:
  widget.Net(**base(bg='color3'), interface='wlp2s0'),
 ```
 
-Una vez eso está hecho, puedes iniciar sesión. Pero recuerda que los atajos de
-teclado no funcionarán a no ser que tengas todos los programas que uso yo y las
-mismas configuraciones. Puedes cambiar los atajos de teclado o bien instalar el
-software que uso yo, mira
-[esta sección](https://github.com/antoniosarosi/dotfiles/blob/master/README.es.md#atajos-de-teclado)
-para las instrucciones.
-
 ## Estructura
 
 En el archivo ```config.py``` que es donde la mayoría suele poner toda su
