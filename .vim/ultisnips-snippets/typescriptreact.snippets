@@ -1,0 +1,47 @@
+snippet rdiv "Create new React div" b
+<div className="${1}">
+  $0
+</div>
+endsnippet
+
+# Hooks
+snippet rcomponent "Create new hook component" b
+import React, {useState} from 'react';
+
+export const ${1} = () => {
+  $0
+
+  return (
+    <></>
+  );
+}
+
+endsnippet
+
+snippet rstate "Create new state variable" b
+const [${1}, set${1/\w+\s*/\u$0/}] = useState($0);
+endsnippet
+
+snippet rform "Create form tag" b
+<form onSubmit={${1:handleSubmit}}>
+  $0
+</form>
+endsnippet
+
+snippet rimg "Create image tag" b
+<img alt={${1}} src={${2}} />
+$0
+endsnippet
+
+snippet rt "Create tag" b
+<${1} className="${2}">
+  $0
+</$1>
+endsnippet
+
+snippet reffect "Create useEffect hook" b
+useEffect(() => {
+
+}, [$1]);
+endsnippet
+

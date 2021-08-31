@@ -1,7 +1,4 @@
 # Qtile
-
-![Qtile](../../.screenshots/qtile.png)
-
 Instala Qtile y las dependencias:
 
 Fuentes
@@ -21,6 +18,7 @@ Clona este repositorio y copia mis configuraciones:
 ```bash
 git clone https://github.com/KenethSandoval/dotfiles.git
 cp -r dotfiles/.config/qtile ~/.config
+cp -r dotfiles/.vim ~/.vim
 ```
 
 Pruébalo con **[Xephyr](https://wiki.archlinux.org/index.php/Xephyr)**:
