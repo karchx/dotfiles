@@ -10,4 +10,5 @@ return require('packer').startup(function()
   use 'preservim/nerdtree' -- NERDTree
   use 'vim-airline/vim-airline' -- VIM airline
   use 'vim-airline/vim-airline-themes' -- airline theme
+  use 'tanvirtin/monokai.nvim' -- Monokai Theme
 end)
