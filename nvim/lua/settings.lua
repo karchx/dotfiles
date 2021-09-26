@@ -1,10 +1,15 @@
-vim.opt.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
-
 vim.g.mapleader = ' '
+local set = vim.opt
 
-local map = vim.api.nvim_set_keymap
+set.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
 
-map('n', '<Leader>w', ':write<CR>', {noremap = true})
-map('n', '<Leader>q', ':q<CR>', {noremap = true})
-map('n', '<Leader>f', ':Telescope find_files<CR>', {noremap = true})
+set.number = true
+set.mouse='a'
+set.numberwidth=1
+set.encoding='UTF-8'
+set.sw=1
+set.relativenumber=true
+set.tabstop=2 
+set.shiftwidth=2 
 
+set.expandtab = true

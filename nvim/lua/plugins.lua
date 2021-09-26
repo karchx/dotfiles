@@ -6,4 +6,6 @@ return require('packer').startup(function()
   	'nvim-telescope/telescope.nvim',
   	requires = { {'nvim-lua/plenary.nvim'} }
 	} -- Package Telescope
+
+  use 'preservim/nerdtree' -- NERDTree
 end)
