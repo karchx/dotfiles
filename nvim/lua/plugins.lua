@@ -11,4 +11,6 @@ return require('packer').startup(function()
   use 'vim-airline/vim-airline' -- VIM airline
   use 'vim-airline/vim-airline-themes' -- airline theme
   use 'tanvirtin/monokai.nvim' -- Monokai Theme
+  use 'ryanoasis/vim-devicons' -- Icons
+  use {'neoclide/coc.nvim', branch = 'release'}
 end)

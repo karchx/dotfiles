@@ -24,3 +24,4 @@ vim.g['airline_theme'] = 'base16_monokai'
 require('monokai')
 vim.cmd('colorscheme monokai')
 
+vim.g['coc_node_path'] = '/home/stivarch/.nvm/versions/node/v16.3.0/bin/node'

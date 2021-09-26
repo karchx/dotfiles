@@ -1,0 +1,11 @@
+{
+  "npm.binPath": "~/.nvm/version/node/v16.3.0/bin/npm",
+  "clangd.enabled": true,
+  "clangd.disableSnippetCompletion": false,
+  "clangd.path": "/home/stivarch/.config/coc/extensions/coc-clangd-data/install/12.0.0/clangd_12.0.0/bin/clangd",
+  "vetur.trace.server": "verbose",
+  "go.enable": true,
+  "go.trace.server": "verbose",
+  "sh.enable": true ,
+  "rust-analyzer.enable": true
+}
