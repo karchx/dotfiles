@@ -8,4 +8,6 @@ return require('packer').startup(function()
 	} -- Package Telescope
 
   use 'preservim/nerdtree' -- NERDTree
+  use 'vim-airline/vim-airline' -- VIM airline
+  use 'vim-airline/vim-airline-themes' -- airline theme
 end)

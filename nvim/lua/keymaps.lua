@@ -25,4 +25,5 @@ map{'n', '<Leader>fb', ':Telescope buffers<CR>'}
 map{'n', '<Leader>fh', ':Telescope help_tags<CR>'}
 --NERDTree
 map{'n', '<Leader>b', ':NERDTreeToggle<CR>'}
+map{'n', '<Leader>r', ':NERDTreeRefreshRoot<CR>'}
 
