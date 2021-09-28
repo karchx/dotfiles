@@ -1,7 +1,7 @@
 vim.g.mapleader = ' '
-local set = vim.opt
+vim.opt.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
 
-set.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
+local set = vim.opt
 
 set.number = true
 set.mouse='a'
@@ -23,5 +23,23 @@ vim.g['airline_theme'] = 'base16_monokai'
 -- Theme
 require('monokai')
 vim.cmd('colorscheme monokai')
+
+-- Rainbow
+vim.cmd [[
+  augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+  augroup END
+
+  autocmd FileType * RainbowParentheses
+]]
+
+vim.g['rainbow#max_level'] = 16
+
+-- vim.g['rainbow#pairs'] = { { "(', ')" }, { "[', ']" }, { "{', '}" }}
+
+
+-- List of colors that you do not want. ANSI code or #RRGGBB
+vim.g['rainbow#blacklist']= {233, 234}
 
 vim.g['coc_node_path'] = '/home/stivarch/.nvm/versions/node/v16.3.0/bin/node'

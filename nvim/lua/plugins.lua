@@ -13,4 +13,6 @@ return require('packer').startup(function()
   use 'tanvirtin/monokai.nvim' -- Monokai Theme
   use 'ryanoasis/vim-devicons' -- Icons
   use {'neoclide/coc.nvim', branch = 'release'}
+  use 'prettier/vim-prettier' -- Prettier
+  use 'junegunn/rainbow_parentheses.vim' -- Rainbow
 end)
