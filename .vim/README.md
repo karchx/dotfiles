@@ -43,3 +43,9 @@ y la configuracion de los mismos plugins la podemos poner despues del
 ```vim
 call vundle#end()
 ```
+
+## NOTA:
+Si creaste un archivo de vim por separado para poner las configuraciones y tus plugins y no ves ningun cambion utiliza la siguiente instruccion en tu .vimrc
+```vim
+so ~/archivo.vim
+```
