@@ -75,3 +75,7 @@ coloca su nombre en un archivo llamado ```./config.json```:
     "theme": "material-ocean"
 }
 ```
+# NOTA:
+```
+PONER LAS CONFIGURACIONES EN EL ARCHIVO .CONFIG
+```

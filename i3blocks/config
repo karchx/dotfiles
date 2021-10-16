@@ -1,0 +1,73 @@
+#
+#  _ _____ _     _            _
+# (_)___ /| |__ | | ___   ___| | _____
+# | | |_ \| '_ \| |/ _ \ / __| |/ / __|
+# | |___) | |_) | | (_) | (__|   <\__ \
+# |_|____/|_.__/|_|\___/ \___|_|\_\___/
+
+align=center
+separator=true
+color=#f8f8f2
+separator_block_width=15
+markup=pango
+
+[battery]
+command=~/.i3/i3scripts/battery2/battery2
+markup=pango
+interval=2
+color=#ff5555
+border=#ff5555
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
+
+[wifi]
+command=~/.i3/i3scripts/wifi/wifi
+instance=wlp2s0
+interval=2
+label=<span color="#ff79c6"> </span>
+border=#ff79c6
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
+
+[cpu_usage2]
+#command=sar -u 1 1 | awk 'FNR == 5 { printf "%04.1f<span color=\"#ff5555\">%</span>", (100 - $8) } ' && sensors | awk '{ if ($1 == "CPU" && $2 == "Temperature:") { gsub(/[+°C]/, "") ; printf " %i<span color=\"#ff5555\">°C</span>\n", $3 } }'
+command=~/.i3/i3scripts/cpu_usage/cpu_usage
+interval=1
+label=<span color="#ff5555"><b>CPU: </b></span>
+border=#ff5555
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
+
+[memory]
+command=~/.i3/i3scripts/memory/memory 
+interval=2
+label=<span color="#ff79c6"> </span>
+border=#ff79c6
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
+
+[volume]
+command=~/.i3/i3scripts/volume-pulseaudio/volume-pulseaudio
+interval=1
+border=#bd93f9
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
+
+[cal_date]
+command=~/.i3/i3scripts/calendar/calendar
+interval=1
+border=#1793d1
+border_top=1
+border_right=0
+border_bottom=0
+border_left=0
