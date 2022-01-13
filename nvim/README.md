@@ -1,5 +1,5 @@
 # Setup NVIM
-(./images/setup-image)
+![setup](./images/setup-image)
 
 ## Get started
 Manejador de plugins recomendado
