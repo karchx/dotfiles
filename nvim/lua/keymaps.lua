@@ -29,7 +29,7 @@ map("n", "<cr>", "o<Esc>", opts)
 map("n", "Q", ":close<cr>", opts)
 
 -- Telescope select files
-map("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
+map("n", "<Leader>p", "<cmd>Telescope find_files<cr>", opts)
 
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<cr>", opts)
