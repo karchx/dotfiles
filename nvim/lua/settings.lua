@@ -1,78 +1,204 @@
-vim.g.mapleader = ' '
-vim.opt.listchars = {eol = '↲', tab = '▸ ', trail = '·'}
+-- Incremental live completion (note: this is now a default on master)
+vim.o.inccommand = "nosplit"
 
-local set = vim.opt
+-- Set completeopt to have a better completion experience
+vim.o.completeopt = "menuone,noselect"
 
-set.number = true
-set.mouse='a'
-set.numberwidth=1
-set.encoding='UTF-8'
-set.sw=1
-set.relativenumber=true
-set.tabstop=2 
-set.shiftwidth=2 
+-- Enable highlight on search
+vim.o.hlsearch = true
+-- highlight match while typing search pattern
+vim.o.incsearch = true
 
-set.expandtab = true
+-- Make line numbers default
+vim.wo.number = true
 
--- Airline
-vim.g['airline#extensions#tabline#enabled'] = 1
-vim.g['airline#extensions#tabline#left_sep'] = ' '
-vim.g['airline#extensions#tabline#left_alt_sep'] = '|'
-vim.g['airline_theme'] = 'material'
+-- Do not save when switching buffers (note: this is now a default on master)
+vim.o.hidden = true
 
--- Theme
--- require('material')
-vim.g['material_theme_style'] = 'darker'
-vim.g['material_terminal_italics'] = 1
-vim.cmd('colorscheme material')
+-- Enable break indent
+vim.o.breakindent = true
 
--- Rainbow
-vim.cmd [[
-  augroup rainbow_lisp
-  autocmd!
-  autocmd FileType lisp,clojure,scheme RainbowParentheses
-  augroup END
+-- Use swapfiles
+vim.o.swapfile = true
 
-  autocmd FileType * RainbowParentheses
-]]
+-- Save undo history
+vim.o.undofile = true
+vim.o.undolevels = 1000
 
-vim.g['rainbow#max_level'] = 16
+-- Case insensitive searching UNLESS /C or capital in search
+vim.o.ignorecase = true
+vim.o.smartcase = true
 
--- vim.g['rainbow#pairs'] = { { "(', ')" }, { "[', ']" }, { "{', '}" }}
+-- Decrease update time
+vim.o.updatetime = 250
+vim.wo.signcolumn = "yes"
 
+-- Set colorscheme (order is important here)
+vim.o.termguicolors = true
+vim.cmd([[ colorscheme nightfox ]])
 
--- List of colors that you do not want. ANSI code or #RRGGBB
-vim.g['rainbow#blacklist']= {233, 234}
+-- Disable intro message
+vim.opt.shortmess:append("I")
 
-vim.g['coc_node_path'] = '/home/stivarch/.nvm/versions/node/v16.3.0/bin/node'
+-- Disable ins-completion-menu messages
+vim.opt.shortmess:append("c")
 
+-- Do not source the default filetype.vim
+vim.g.did_load_filetypes = 1
 
--- Theme JS
-vim.g['javascript_plugin_ngdoc'] = 1
-vim.g['javascript_plugin_flow'] = 1
+-- go to previous/next line with h,l,left arrow and right arrow
+-- when cursor reaches end/beginning of line
+-- vim.o.whichwrap:append "<>hl"
+-- @todo - fix this
 
-vim.cmd[[
-    augroup javascript_folding
-    au!
-    au FileType javascript setlocal foldmethod=syntax
-    augroup END
-]]
+-- Highlight on yank
+vim.api.nvim_exec(
+	[[
+  augroup YankHighlight
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+  augroup end
+]],
+	false
+)
 
-vim.g['javascript_conceal_function']             = "ƒ"
-vim.g['javascript_conceal_null']                 = "ø"
-vim.g['javascript_conceal_undefined']            = "¿"
-vim.g['javascript_conceal_NaN']                  = "ℕ"
-vim.g['javascript_conceal_prototype']            = "¶"
-vim.g['javascript_conceal_static']               = "•"
-vim.g['javascript_conceal_super']                = "Ω"
-vim.g['javascript_conceal_arrow_function']       = "⇒"
+-- Don't show any numbers inside terminals
+vim.cmd([[ au TermOpen term://* setlocal signcolumn=no nonumber norelativenumber | setfiletype terminal ]])
 
-set.conceallevel=1
+-- Y yank until the end of line  (note: this is now a default on master)
+vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
 
---Enable vim-prettier to run in files without requiring the "@format" doc tag
-vim.g['prettier#autoformat'] = 0
-vim.g['prettier#config#tab_width'] = 4
-vim.g['prettier#config#trailing_comma'] = 'es5'
-vim.cmd[[
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.html Prettier
-]]
+-- From SpaceVim
+
+-- Take indent for new line from previous line
+vim.o.autoindent = true
+vim.o.smartindent = true
+
+-- GUI: Name(s) of font(s) to be used
+vim.o.guifont = "Roboto Mono:h27"
+
+-- Neovide config
+vim.g.neovide_cursor_animation_length = 0.0
+vim.g.neovide_cursor_trail_length = 0.0
+
+-- Number of command-lines that are remembered
+vim.o.history = 10000
+
+-- Use menu for command line completion
+vim.o.wildmenu = true
+
+-- Enable wrap
+vim.o.wrap = true
+
+-- Wrap long lines at a blank
+vim.o.linebreak = true
+
+-- Autom. read file when changed outside of Vim
+vim.o.autoread = true
+
+-- Autom. save file before some action
+vim.o.autowrite = true
+
+-- Keep backup file after overwriting a file
+vim.o.backup = true
+
+-- Make a backup before overwriting a file
+vim.o.writebackup = false
+
+-- Show cursor line and column in the status line
+vim.o.ruler = true
+
+-- Briefly jump to matching bracket if insert one
+vim.o.showmatch = true
+
+-- Hide show current mode on status line
+vim.o.showmode = false
+
+-- Show relative line number in front of each line
+vim.o.relativenumber = true
+
+-- Disable python2 provider
+vim.g.loaded_python_provider = 0
+
+--  Maximum height of the popup menu
+vim.o.pumheight = 15
+
+-- Minimum nr. of lines above and below cursor
+vim.o.scrolloff = 5 -- could be 1
+vim.o.sidescrolloff = 5
+-- vim.o.display = 'lastline'
+
+-- Ignore case when completing file names and directories.
+vim.o.wildignorecase = true
+
+-- Timeout on leaderkey
+vim.o.ttimeout = true
+vim.o.ttimeoutlen = 5
+
+-- Show (partial) command in status line
+vim.o.showcmd = false
+
+-- Folding
+vim.o.foldenable = false
+vim.o.foldmethod = "expr"
+vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Asyncrun automatically open quickfix window
+vim.g.asyncrun_open = 6
+
+-- go - format on save
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua vim.lsp.buf.formatting_seq_sync() ]], false)
+vim.api.nvim_exec([[ autocmd BufWritePre *.go :silent! lua require('config.go').goimport() ]], false)
+
+-- Open file at same location where it was opened last time
+vim.cmd(
+	[[ au BufReadPost * if expand('%:p') !~# '\m/\.git/' && line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif ]]
+)
+
+-- Set directories for backup/swap/undo files and create them if necessary
+local Path = require("plenary.path")
+
+local swapdir = Path:new(Path.path.home .. "/.cache/nvim/swap/")
+if not swapdir:exists() then
+	swapdir:mkdir()
+end
+vim.o.directory = tostring(swapdir)
+
+local backupdir = Path:new(Path.path.home .. "/.cache/nvim/backup/")
+if not backupdir:exists() then
+	backupdir:mkdir()
+end
+vim.o.backupdir = tostring(backupdir)
+
+local undodir = Path:new(Path.path.home .. "/.cache/nvim/undo/")
+if not undodir:exists() then
+	undodir:mkdir()
+end
+vim.o.undodir = tostring(undodir)
+
+-- disable some builtin vim plugins
+local disabled_built_ins = {
+	"2html_plugin",
+	"getscript",
+	"getscriptPlugin",
+	"gzip",
+	"logipat",
+	"netrw",
+	"netrwPlugin",
+	"netrwSettings",
+	"netrwFileHandlers",
+	"matchit",
+	"tar",
+	"tarPlugin",
+	"rrhelper",
+	"spellfile_plugin",
+	"vimball",
+	"vimballPlugin",
+	"zip",
+	"zipPlugin",
+}
+
+for _, plugin in pairs(disabled_built_ins) do
+	vim.g["loaded_" .. plugin] = 1
+end
+

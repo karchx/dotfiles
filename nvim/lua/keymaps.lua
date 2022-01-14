@@ -1,29 +1,76 @@
-local map = function(key)
-  -- extraer opciones
-  local opts = {noremap=true}
-  for i, v in pairs(key) do
-    if type(i) == 'string' then opts[i] = v end
-  end
+local map = vim.api.nvim_set_keymap
+local opts = { noremap = true, silent = true }
 
-  -- soporte básico para atajos de buffer
-  local buffer = opts.buffer
-  opts.buffer = nil
+-- Normal mode
 
-  if buffer then
-    vim.api.nvim_buf_set_keymap(0, key[1], key[2], key[3], opts)
-  else
-    vim.api.nvim_set_keymap(key[1], key[2], key[3], opts)
-  end
-end
+-- Move to previous/next
+map("n", "<A-Left>", ":BufferPrevious<cr>", opts)
+map("n", "<A-Right>", ":BufferNext<cr>", opts)
+-- Re-order to previous/next
+map("n", "<A-,>", ":BufferMovePrevious<cr>", opts)
+map("n", "<A-.>", " :BufferMoveNext<cr>", opts)
+-- Goto buffer in position...
+map("n", "<A-1>", ":BufferGoto 1<cr>", opts)
+map("n", "<A-2>", ":BufferGoto 2<cr>", opts)
+map("n", "<A-3>", ":BufferGoto 3<cr>", opts)
+map("n", "<A-4>", ":BufferGoto 4<cr>", opts)
+map("n", "<A-5>", ":BufferGoto 5<cr>", opts)
+map("n", "<A-6>", ":BufferGoto 6<cr>", opts)
+map("n", "<A-7>", ":BufferGoto 7<cr>", opts)
+map("n", "<A-8>", ":BufferGoto 8<cr>", opts)
+map("n", "<A-9>", ":BufferGoto 9<cr>", opts)
+map("n", "<A-0>", ":BufferLast<cr>", opts)
+-- Close buffer
+map("n", "<A-c>", ":BufferClose<cr>", opts)
+-- Start new line for RETURN
+map("n", "<cr>", "o<Esc>", opts)
 
-map{'n', '<Leader>w', ':write<CR>'}
-map{'n', '<Leader>q', ':quit<CR>'}
--- Telescope.nvim
-map{'n', '<Leader>ff', ':Telescope find_files<CR>'}
-map{'n', '<Leader>fg', ':Telescope live_grep<CR>'}
-map{'n', '<Leader>fb', ':Telescope buffers<CR>'}
-map{'n', '<Leader>fh', ':Telescope help_tags<CR>'}
---NERDTree
-map{'n', '<Leader>b', ':NERDTreeToggle<CR>'}
-map{'n', '<Leader>r', ':NERDTreeRefreshRoot<CR>'}
+-- Close windows
+map("n", "Q", ":close<cr>", opts)
 
+-- Telescope select files
+map("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
+
+-- Resize with arrows
+map("n", "<C-Up>", ":resize +2<cr>", opts)
+map("n", "<C-Down>", ":resize -2<cr>", opts)
+map("n", "<C-Left>", ":vertical resize +2<cr>", opts)
+map("n", "<C-Right>", ":vertical resize -2<cr>", opts)
+
+-- Move current line / block with Alt-j/k ala vscode.
+map("n", "<A-j>", ":m .+1<cr>==", opts)
+-- Move current line / block with Alt-j/k ala vscode.
+map("n", "<A-k>", ":m .-2<cr>==", opts)
+
+-- Insert mode
+
+-- 'jk' for quitting insert mode
+map("i", "jk", "<ESC>", opts)
+-- 'kj' for quitting insert mode
+map("i", "kj", "<ESC>", opts)
+-- 'jj' for quitting insert mode
+map("i", "jj", "<ESC>", opts)
+
+-- Visual mode
+
+-- Search for visually selected text
+map("v", "//", 'y/<C-R>"<cr>', opts)
+-- Have the same buffer on clipboard for multiple pastes
+map("v", "p", "pgvy", opts)
+
+-- Visual block mode
+
+-- Move current line / block with Alt-j/k ala vscode.
+map("x", "<A-j>", ":m '>+1<cr>gv-gv", opts)
+map("x", "<A-k>", ":m '<-2<cr>gv-gv", opts)
+
+-- Select blocks after indenting
+map("x", "<", "<gv", opts)
+map("x", ">", ">gv|", opts)
+
+-- Use tab for indenting in visual mode
+-- map('x', '<Tab>', ">gv|", opts)
+-- map('x', '<S-Tab>', "<gv", opts)
+
+-- Copy to system clipboard
+map("x", "\\y", '"+y', opts)
