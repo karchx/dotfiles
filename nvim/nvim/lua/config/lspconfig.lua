@@ -148,15 +148,15 @@ local servers = {
 		settings = {
 			rootMarkers = { ".git/" },
 			languages = {
-				go = {
-				     {
-				         lintCommand = "golangci-lint run ./...",
-				         lintStdin = true,
-				         lintIgnoreExitCode = true,
-				         lintFormats = {"%f:%l:%c: %m"},
-				         lintSource = "golangci-lint"
-				     }
-				 },
+				-- go = {
+				--     {
+				--         lintCommand = "golangci-lint run ./...",
+				--         lintStdin = true,
+				--         lintIgnoreExitCode = true,
+				--         lintFormats = {"%f:%l:%c: %m"},
+				--         lintSource = "golangci-lint"
+				--     }
+				-- },
 				lua = { { formatCommand = "lua-format -i", formatStdin = true } },
 				python = {
 					{ formatCommand = "black --fast -", formatStdin = true },
@@ -197,7 +197,6 @@ local servers = {
 			"scss",
 			"sh",
 			"lua",
-			"go",
 			"markdown",
 			"typescript",
 			"typescriptreact",

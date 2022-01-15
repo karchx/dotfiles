@@ -58,15 +58,15 @@ return require("packer").startup(function()
 	})
 
 	-- Project management
-	use({
-		"ahmedkhalf/project.nvim",
-		config = function()
-			require("project_nvim").setup({
-				require("telescope").load_extension("projects"),
-			})
-		end,
-		requires = { { "nvim-telescope/telescope.nvim" } },
-	})
+	 --use({
+		-- "ahmedkhalf/project.nvim",
+		-- config = function()
+			-- require("project_nvim").setup({
+				-- require("telescope").load_extension("projects"),
+			-- })
+		-- end,
+		-- requires = { { "nvim-telescope/telescope.nvim" } },
+	-- })
 
 	-- Fuzzy filtering
 	use({
