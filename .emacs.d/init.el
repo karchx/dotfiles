@@ -12,6 +12,7 @@
 (require 'theme)
 (require 'c-cpp)
 (require 'gopls)
+(require 'python)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
