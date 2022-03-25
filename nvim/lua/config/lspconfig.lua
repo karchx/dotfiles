@@ -36,6 +36,7 @@ local function on_attach(_, bufnr)
 end
 
 local custom_capabilities = vim.lsp.protocol.make_client_capabilities()
+custom_capabilities.offsetEncoding = { "utf-16" }
 
 custom_capabilities.textDocument.completion.completionItem.documentationFormat = { "markdown", "plaintext" }
 custom_capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -99,6 +100,17 @@ local servers = {
 		},
 		filetypes = { "go", "gomod" },
 	},
+	hls = {
+		cmd = { "haskell-language-server-wrapper", "--lsp" },
+		settings = {
+      			haskell = {
+        			formattingProvider = "ormolu"
+      			}
+    		},
+		true,
+	},
+	clangd = true,
+	-- dart=true,
 	pyright = true,
 	tsserver = true,
 	eslint = true,
@@ -139,11 +151,10 @@ local servers = {
 		},
 	},
 	jsonls = { init_options = { provideFormatter = false } },
-	clangd = true,
 	rust_analyzer = true,
 	dockerls = true,
 	efm = {
-		init_options = { documentFormatting = true },
+		init_optiont = { documentFormatting = true,  flutterOutline = true },
 		root_dir = vim.loop.cwd,
 		settings = {
 			rootMarkers = { ".git/" },
@@ -164,14 +175,8 @@ local servers = {
 						formatCommand = "isort --stdout --profile black -",
 						formatStdin = true,
 					},
-					-- {
-					--     lintCommand = "flake8 --max-line-length 160 --format '%(path)s:%(row)d:%(col)d: %(code)s %(code)s %(text)s' --stdin-display-name ${INPUT} -",
-					--     lintStdin = true,
-					--     lintIgnoreExitCode = true,
-					--     lintFormats = {"%f:%l:%c: %t%n%n%n %m"},
-					--     lintSource = "flake8"
-					-- }
 				},
+				-- clangd = { capabilities = capabilities, },
 				typescript = { prettier },
 				javascript = { prettier },
 				typescriptreact = { prettier },
@@ -183,10 +188,11 @@ local servers = {
 				css = { prettier },
 				markdown = { prettier },
 				sh = { shellcheck, shfmt },
-				-- make = {{lintCommand = "checkmake", lintStdin = true}}
 			},
 		},
 		filetypes = {
+			"c",
+			"cpp",
 			"python",
 			"ts",
 			"javascript",
@@ -198,10 +204,12 @@ local servers = {
 			"sh",
 			"lua",
 			"go",
+			"haskell",
 			"markdown",
 			"typescript",
 			"typescriptreact",
 			"javascriptreact", -- 'make'
+			"dart",
 		},
 	},
 }

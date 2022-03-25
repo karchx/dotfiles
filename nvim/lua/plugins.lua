@@ -1,5 +1,4 @@
 return require("packer").startup(function()
-	
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
@@ -57,6 +56,16 @@ return require("packer").startup(function()
 		end,
 	})
 
+	-- Org Mode
+	-- use ('nvim-treesitter/nvim-treesitter')
+	--use ({'nvim-orgmode/orgmode', config = function()
+	--	require('orgmode').setup({
+ 	--		 	org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
+  --			org_default_notes_file = '~/Dropbox/org/refile.org',
+	--	})
+	--	end,
+	-- })
+
 	-- Project management
 	use({
 		"ahmedkhalf/project.nvim",
@@ -102,7 +111,6 @@ return require("packer").startup(function()
 	})
 
 	use({ "EdenEast/nightfox.nvim" })
-	
 
 	-- Color highlighter
 	use({

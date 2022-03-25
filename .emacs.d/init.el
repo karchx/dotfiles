@@ -8,6 +8,7 @@
 (tool-bar-mode -1)
 
 (show-paren-mode t)
+(electric-pair-mode 1)
 
 (require 'base)
 (require 'evilc)
@@ -16,6 +17,7 @@
 (require 'gopls)
 (require 'python)
 (require 'jtxs)
+(require 'modeline)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.

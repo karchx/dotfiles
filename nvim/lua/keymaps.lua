@@ -31,6 +31,12 @@ map("n", "Q", ":close<cr>", opts)
 -- Telescope select files
 map("n", "<C-p>", "<cmd>Telescope find_files<cr>", opts)
 
+-- Make run
+map("n", "<C-m>", "<cmd>make<cr>", opts)
+
+-- Terminal toggle
+map("n", "<Leader>t", "<cmd>ToggleTerm<cr>", opts)
+
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<cr>", opts)
 map("n", "<C-Down>", ":resize -2<cr>", opts)

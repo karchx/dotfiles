@@ -14,6 +14,8 @@ vim.wo.number = true
 
 -- Do not save when switching buffers (note: this is now a default on master)
 vim.o.hidden = true
+vim.o.tabstop = 2
+vim.o.shiftwidth = 2
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -100,7 +102,7 @@ vim.o.autoread = true
 vim.o.autowrite = true
 
 -- Keep backup file after overwriting a file
-vim.o.backup = true
+-- vim.o.backup = true
 
 -- Make a backup before overwriting a file
 vim.o.writebackup = false
