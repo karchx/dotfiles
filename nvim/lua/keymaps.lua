@@ -37,6 +37,9 @@ map("n", "<C-m>", "<cmd>make<cr>", opts)
 -- Terminal toggle
 map("n", "<Leader>t", "<cmd>ToggleTerm<cr>", opts)
 
+-- NvimTree
+map("n", "<Leader>b", "<cmd>NvimTreeToggle<cr>", opts)
+
 -- Resize with arrows
 map("n", "<C-Up>", ":resize +2<cr>", opts)
 map("n", "<C-Down>", ":resize -2<cr>", opts)

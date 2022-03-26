@@ -253,6 +253,12 @@ _G.packer_plugins = {
     path = "/home/stivarch/.local/share/nvim/site/pack/packer/start/nvim-toggleterm.lua",
     url = "https://github.com/akinsho/nvim-toggleterm.lua"
   },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\1\2;\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\14nvim-tree\frequire\0" },
+    loaded = true,
+    path = "/home/stivarch/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
+  },
   ["nvim-treesitter"] = {
     after = { "nvim-ts-autotag", "nvim-ts-rainbow" },
     loaded = true,
@@ -396,14 +402,18 @@ time([[Config for octo.nvim]], false)
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\1\2>\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\21config.telescope\frequire\0", "config", "telescope.nvim")
 time([[Config for telescope.nvim]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\1\2;\0\0\2\0\3\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\1G\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
 -- Config for: format.nvim
 time([[Config for format.nvim]], true)
 try_loadstring("\27LJ\1\2;\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\18config.format\frequire\0", "config", "format.nvim")
 time([[Config for format.nvim]], false)
--- Config for: nvim-toggleterm.lua
-time([[Config for nvim-toggleterm.lua]], true)
-try_loadstring("\27LJ\1\2=\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\20config.terminal\frequire\0", "config", "nvim-toggleterm.lua")
-time([[Config for nvim-toggleterm.lua]], false)
+-- Config for: telescope-vim-bookmarks.nvim
+time([[Config for telescope-vim-bookmarks.nvim]], true)
+try_loadstring("\27LJ\1\2R\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0%\1\3\0>\0\2\1G\0\1\0\18vim_bookmarks\19load_extension\14telescope\frequire\0", "config", "telescope-vim-bookmarks.nvim")
+time([[Config for telescope-vim-bookmarks.nvim]], false)
 -- Config for: nvim-neoclip.lua
 time([[Config for nvim-neoclip.lua]], true)
 try_loadstring("\27LJ\1\2j\0\0\2\0\5\0\r4\0\0\0%\1\1\0>\0\2\0027\0\2\0002\1\0\0>\0\2\0014\0\0\0%\1\3\0>\0\2\0027\0\4\0%\1\1\0>\0\2\1G\0\1\0\19load_extension\14telescope\nsetup\fneoclip\frequire\0", "config", "nvim-neoclip.lua")
@@ -412,10 +422,10 @@ time([[Config for nvim-neoclip.lua]], false)
 time([[Config for todo-comments.nvim]], true)
 try_loadstring("\27LJ\1\0029\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\16config.todo\frequire\0", "config", "todo-comments.nvim")
 time([[Config for todo-comments.nvim]], false)
--- Config for: telescope-vim-bookmarks.nvim
-time([[Config for telescope-vim-bookmarks.nvim]], true)
-try_loadstring("\27LJ\1\2R\0\0\2\0\4\0\a4\0\0\0%\1\1\0>\0\2\0027\0\2\0%\1\3\0>\0\2\1G\0\1\0\18vim_bookmarks\19load_extension\14telescope\frequire\0", "config", "telescope-vim-bookmarks.nvim")
-time([[Config for telescope-vim-bookmarks.nvim]], false)
+-- Config for: nvim-toggleterm.lua
+time([[Config for nvim-toggleterm.lua]], true)
+try_loadstring("\27LJ\1\2=\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\20config.terminal\frequire\0", "config", "nvim-toggleterm.lua")
+time([[Config for nvim-toggleterm.lua]], false)
 -- Config for: Comment.nvim
 time([[Config for Comment.nvim]], true)
 try_loadstring("\27LJ\1\0025\0\0\2\0\3\0\0064\0\0\0%\1\1\0>\0\2\0027\0\2\0>\0\1\1G\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
@@ -464,9 +474,9 @@ time([[Defining lazy-load filetype autocommands]], true)
 vim.cmd [[au FileType html ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "html" }, _G.packer_plugins)]]
 vim.cmd [[au FileType css ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "css" }, _G.packer_plugins)]]
 vim.cmd [[au FileType go ++once lua require("packer.load")({'go.nvim'}, { ft = "go" }, _G.packer_plugins)]]
-vim.cmd [[au FileType gomod ++once lua require("packer.load")({'go.nvim'}, { ft = "gomod" }, _G.packer_plugins)]]
 vim.cmd [[au FileType conf ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "conf" }, _G.packer_plugins)]]
 vim.cmd [[au FileType yaml ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "yaml" }, _G.packer_plugins)]]
+vim.cmd [[au FileType gomod ++once lua require("packer.load")({'go.nvim'}, { ft = "gomod" }, _G.packer_plugins)]]
 vim.cmd [[au FileType json ++once lua require("packer.load")({'nvim-colorizer.lua'}, { ft = "json" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
