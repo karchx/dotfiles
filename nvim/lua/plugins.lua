@@ -56,16 +56,6 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- Org Mode
-	-- use ('nvim-treesitter/nvim-treesitter')
-	--use ({'nvim-orgmode/orgmode', config = function()
-	--	require('orgmode').setup({
- 	--		 	org_agenda_files = {'~/Dropbox/org/*', '~/my-orgs/**/*'},
-  --			org_default_notes_file = '~/Dropbox/org/refile.org',
-	--	})
-	--	end,
-	-- })
-
 	-- Project management
 	use({
 		"ahmedkhalf/project.nvim",
@@ -169,14 +159,6 @@ return require("packer").startup(function()
 		end,
 	})
 
-	-- Surround text object plugin
-	use({
-		"blackCauldron7/surround.nvim",
-		config = function()
-			require("surround").setup({ mappings_style = "surround" })
-		end,
-	})
-
 	-- Clipboard management
 	use({
 		"AckslD/nvim-neoclip.lua",
@@ -207,13 +189,13 @@ return require("packer").startup(function()
 	}
 
 	-- Treesitter
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		config = function()
-			require("config.treesitter").setup()
-		end,
-		run = ":TSUpdate",
-	})
+	-- use({
+		-- "nvim-treesitter/nvim-treesitter",
+		-- config = function()
+			-- require("config.treesitter").setup()
+		-- end,
+		-- run = ":TSUpdate",
+	-- })
 
 	-- Rainbow parentheses by using tree-sitter
 	use({ "p00f/nvim-ts-rainbow", after = "nvim-treesitter" })
