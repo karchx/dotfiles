@@ -19,7 +19,7 @@
 (require 'c-cpp)
 (require 'gopls)
 (require 'python)
-;(require 'jtxs)
+(require 'jtxs)
 (add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
 
 (custom-set-variables
