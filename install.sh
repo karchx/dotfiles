@@ -161,7 +161,7 @@ function chroot_install_bootloader () {
 }
 function chroot_grub_config () {
     echo " >> Configuring the grub ${p_disk}"
-    grub-install --target=i386-pc "${p_disk}"
+    grub-install --target=i386-pc "${p_disk}1"
     grub-mkconfig -o /boot/grub/grub.cfg
     exit 0
 }
