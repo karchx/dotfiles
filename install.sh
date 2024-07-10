@@ -77,22 +77,44 @@ function install_base_packages () {
     pacstrap /mnt base base-devel linux linux-firmware linux-headers "${corePkgs}"
 }
 
-
-#
-# System configuration
-#
 function config_system () {
     echo " >> Configuring system"
     genfstab -U /mnt >> /mnt/etc/fstab
-    arch_chroot "_chroot_symlink"
-    arch_chroot "_chroot_hwclock"
-    arch_chroot "_chroot_locale_gen"
-    arch_chroot "_chroot_hosts"
-    arch_chroot "_chroot_passwd"
-    arch_chroot "_chroot_add_user"
-    arch_chroot "_chroot_add_user_groups"
-    arch_chroot "_chroot_config_sudo"
 }
+
+#
+# The end
+#
+function the_end () {
+    echo " >> Umount /mnt"
+    umount -l /mnt
+    exit 0
+}
+
+set_clock
+
+set_disk_partition
+
+set_partition_tables
+
+mount_file_system
+
+install_base_packages
+
+config_system
+
+sleep 2s
+clear
+
+sed '1,/^#part2$/d' legacy-base-install.sh > /mnt/post_base-install.sh
+
+chmod +x /mnt/post_base-install.sh
+arch-chroot /mnt ./post_base-install.sh
+clear
+the_end
+
+#part2
+
 function chroot_symlink () {
     echo " >> Creating symlink for the localetime"
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
@@ -145,15 +167,6 @@ function chroot_config_sudo () {
     sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
     exit 0
 }
-
-
-#
-# Config bootloader
-#
-function config_bootloader () {
-    arch_chroot "_chroot_install_bootloader"
-    arch_chroot "_chroot_grub_config"
-}
 function chroot_install_bootloader () {
     echo " >> Installing the bootloader"
     pacman -S --needed --noconfirm grub-bios
@@ -161,17 +174,9 @@ function chroot_install_bootloader () {
 }
 function chroot_grub_config () {
     echo " >> Configuring the grub ${p_disk}"
-    grub-install --target=i386-pc "${p_disk}1"
+    grub-install --target=i386-pc "${p_disk}"
     grub-mkconfig -o /boot/grub/grub.cfg
     exit 0
-}
-
-
-#
-# Config network manager
-#
-function config_network_manager () {
-    arch_chroot "_chroot_network_manager"
 }
 function chroot_network_manager () {
     echo " >> Installing the network manager"
@@ -180,71 +185,26 @@ function chroot_network_manager () {
     exit 0
 }
 
+chroot_symlink
 
-#
-# The end
-#
-function the_end () {
-    echo " >> Umount /mnt"
-    umount -l /mnt
-    exit 0
-}
+chroot_hwclock
 
+chroot_locale_gen
 
-#
-# Arch chroot
-#
-function arch_chroot () {
-	echo " >> arch-chroot /mnt /root"
-	cp ${0} /mnt/root
-	chmod 755 /mnt/root/$(basename "${0}")
-	arch-chroot /mnt /root/$(basename "${0}") --chroot ${1} ${2}
-	rm /mnt/root/$(basename "${0}")
-	echo " >> exit arch-chroot"
-}
+chroot_hosts
 
+chroot_passwd
 
-#
-# Main
-#
-function main () {
-    if [[ $1 == "--chroot" ]]; then
-        case ${2} in
-            '_chroot_symlink') chroot_symlink;;
-            '_chroot_hwclock') chroot_hwclock;;
-            '_chroot_locale_gen') chroot_locale_gen;;
-            '_chroot_hosts') chroot_hosts;;
-            '_chroot_passwd') chroot_passwd;;
-            '_chroot_add_user') chroot_add_user;;
-            '_chroot_add_user_groups') chroot_add_user_groups;;
-            '_chroot_config_doas') chroot_config_doas;;
-            '_chroot_config_sudo') chroot_config_sudo;;
-            '_chroot_install_bootloader') chroot_install_bootloader;;
-            '_chroot_grub_config') chroot_grub_config;;
-            '_chroot_network_manager') chroot_network_manager;;
-        esac
-    else
+chroot_add_user
 
-        set_clock
+chroot_add_user_groups
 
-        set_disk_partition
+chroot_config_sudo
 
-        set_partition_tables
+clear
 
-        mount_file_system
+chroot_install_bootloader
 
-        install_base_packages
+chroot_grub_config
 
-        config_system
-
-        config_bootloader
-
-        config_network_manager
-
-        the_end
-
-    fi
-}
-
-
-main "$@"
+chroot_network_manager
