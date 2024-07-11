@@ -5,7 +5,7 @@ HOSTNAME="stivarch"
 USERNAME="stivarch"
 
 # Core package
-corePkgs=(acpid cups dhcp git grub htop iftop neofetch networkmanager os-prober pacman-contrib sudo emacs-nox wget)
+corePkgs=(acpid cups dhcp git grub htop iftop neofetch networkmanager os-prober pacman-contrib sudo emacs-nox wget networkmanager git)
 
 #
 # System clock
@@ -110,6 +110,7 @@ sed '1,/^#part2$/d' legacy-base-install.sh > /mnt/post_base-install.sh
 
 chmod +x /mnt/post_base-install.sh
 arch-chroot /mnt ./post_base-install.sh
+sleep 2
 clear
 
 #part2
@@ -155,12 +156,12 @@ function chroot_add_user_groups () {
 }
 function chroot_config_sudo () {
     echo " >> Configuring visudo"
-    pacman -S --needed --noconfirm sudo
+    pacman -Syu --needed --noconfirm sudo
     sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 }
 function chroot_install_bootloader () {
     echo " >> Installing the bootloader"
-    pacman -S --needed --noconfirm grub-bios
+    pacman -Syu --needed --noconfirm grub-bios
 }
 function chroot_grub_config () {
     echo " >> Configuring the grub ${p_disk}"
@@ -169,7 +170,7 @@ function chroot_grub_config () {
 }
 function chroot_network_manager () {
     echo " >> Installing the network manager"
-    pacman -S --needed --noconfirm networkmanager git
+    pacman -Syu --needed --noconfirm "${corePkgs}"
     systemctl enable NetworkManager
 }
 
