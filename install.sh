@@ -103,39 +103,34 @@ install_base_packages
 
 config_system
 
-sleep 2s
-clear
+#sleep 2s
+#clear
 
-sed '1,/^#part2$/d' install.sh > /mnt/post_base-install.sh
+sed '1,/^#part2$/d' legacy-base-install.sh > /mnt/post_base-install.sh
 
 chmod +x /mnt/post_base-install.sh
 arch-chroot /mnt ./post_base-install.sh
 clear
-the_end
 
 #part2
 
 function chroot_symlink () {
     echo " >> Creating symlink for the localetime"
     ln -sf /usr/share/zoneinfo/${TIME_ZONE} /etc/localtime
-    exit 0
 }
 function chroot_hwclock () {
     echo " >> Setting the hardware clock"
     hwclock --systohc
-    exit 0
 }
 function chroot_locale_gen () {
     echo " >> Setting the system language"
     echo "$LANGUAGE.UTF-8 UTF-8" >> /etc/locale.gen
     locale-gen
-    exit 0
 }
 function chroot_hosts () {
     echo " >> Setting the system hosts"
     echo $HOSTNAME > /etc/hostname
     echo "127.0.1.1 $HOSTNAME.localdomain $HOSTNAME" >> /etc/hosts
-    exit 0
 }
 function chroot_passwd () {
     echo " >> Changing root password"
@@ -144,7 +139,6 @@ function chroot_passwd () {
 		passwd root
 		passed=$?
 	done
-    exit 0
 }
 function chroot_add_user () {
     echo " >> Changing $USERNAME password"
@@ -154,35 +148,29 @@ function chroot_add_user () {
 		passwd $USERNAME
 		passed=$?
 	done
-    exit 0
 }
 function chroot_add_user_groups () {
     echo " >> Adding groups to $USERNAME"
     usermod -aG wheel,audio,video,optical,storage $USERNAME
-    exit 0
 }
 function chroot_config_sudo () {
     echo " >> Configuring visudo"
     pacman -S --needed --noconfirm sudo
     sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
-    exit 0
 }
 function chroot_install_bootloader () {
     echo " >> Installing the bootloader"
     pacman -S --needed --noconfirm grub-bios
-    exit 0
 }
 function chroot_grub_config () {
     echo " >> Configuring the grub ${p_disk}"
     grub-install --target=i386-pc "${p_disk}"
     grub-mkconfig -o /boot/grub/grub.cfg
-    exit 0
 }
 function chroot_network_manager () {
     echo " >> Installing the network manager"
     pacman -S --needed --noconfirm networkmanager git
     systemctl enable NetworkManager
-    exit 0
 }
 
 chroot_symlink
@@ -208,3 +196,5 @@ chroot_install_bootloader
 chroot_grub_config
 
 chroot_network_manager
+
+the_end
