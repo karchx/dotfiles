@@ -106,7 +106,7 @@ config_system
 sleep 2s
 clear
 
-sed '1,/^#part2$/d' legacy-base-install.sh > /mnt/post_base-install.sh
+sed '1,/^#part2$/d' install.sh > /mnt/post_base-install.sh
 
 chmod +x /mnt/post_base-install.sh
 arch-chroot /mnt ./post_base-install.sh
