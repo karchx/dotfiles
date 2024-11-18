@@ -1,9 +1,29 @@
-if require("first_load")() then
-	return
+require("stivarch")
+
+local augroup = vim.api.nvim_create_augroup
+local StivarchGroup = augroup('StivarchGroup', {})
+
+local autocmd = vim.api.nvim_create_autocmd
+local yank_group = augroup('HighlightYank', {})
+
+function R(name)
+    require("plenary.reload").reload_module(name)
 end
 
-vim.g.mapleader = " "
+autocmd('TextYankPost', {
+    group = yank_group,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
 
-require("plugins")
-require("keymaps")
-require("settings")
+-- Clear blank space
+autocmd({"BufWritePre"}, {
+    group = StivArchGroup,
+    pattern = "*",
+    command = [[%s/\s\+$//e]],
+})
