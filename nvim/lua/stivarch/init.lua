@@ -25,7 +25,14 @@ autocmd('TextYankPost', {
 
 -- Clear blank space
 autocmd({"BufWritePre"}, {
-    group = StivArchGroup,
+    group = StivarchGroup,
     pattern = "*",
     command = [[%s/\s\+$//e]],
+})
+
+-- Save and format
+autocmd({"BufWritePre"}, {
+    group = StivarchGroup,
+    pattern = "*",
+    command = "Prettier",
 })
