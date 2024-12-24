@@ -34,7 +34,7 @@ autocmd({"BufWritePre"}, {
 -- Save and format
 autocmd({"BufWritePre"}, {
     group = StivarchGroup,
-    pattern = "*",
+    pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json"},
     command = "Prettier",
 })
 
