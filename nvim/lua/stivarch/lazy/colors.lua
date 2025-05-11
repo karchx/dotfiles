@@ -4,24 +4,38 @@ function ColorMyPencils(color)
 
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = "NONE" })
+    vim.api.nvim_set_hl(0, "TelescopeBorder", { bg = "NONE" })
 end
 
 return {
-
     {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                disable_background = true,
+        "folke/tokyonight.nvim",
+        config = function ()
+            require('tokyonight').setup({
+                transparent = true,
                 styles = {
-                    italic = false,
-                },
+                   sidebars = "transparent",
+                   floats = "transparent",
+                }
             })
-
-            ColorMyPencils();
+            ColorMyPencils("tokyonight-moon");
         end
     },
+    -- {
+    --     "rose-pine/neovim",
+    --     name = "rose-pine",
+    --     config = function()
+    --         require('rose-pine').setup({
+    --             disable_background = true,
+    --             styles = {
+    --                 italic = false,
+    --             },
+    --         })
+
+    --         ColorMyPencils();
+    --     end
+    -- },
 
 
 }
