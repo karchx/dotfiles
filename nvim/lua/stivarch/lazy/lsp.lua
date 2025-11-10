@@ -28,8 +28,8 @@ return { "neovim/nvim-lspconfig",
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "rust_analyzer",
                 "gopls",
+                "rust_analyzer",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -64,6 +64,27 @@ return { "neovim/nvim-lspconfig",
                                 diagnostics = {
                                     globals = { "bit", "vim", "it", "describe", "before_each", "after_each" },
                                 }
+                            }
+                        }
+                    }
+                end,
+                ["rust_analyzer"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.rust_analyzer.setup {
+                        capabilities = capabilities,
+                        settings = {
+                            ["rust-analyzer"] = {
+                                check = {
+                                    enable = false,
+                                    command = "clippy", -- o "clippy"
+                                },
+                                procMacro = { enable = false },
+                                checkOnSave = {
+                                    enable = false
+                                },
+                                diagnostics = {
+                                    enable = false,
+                                },
                             }
                         }
                     }
