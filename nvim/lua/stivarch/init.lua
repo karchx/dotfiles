@@ -25,23 +25,23 @@ autocmd('TextYankPost', {
 })
 
 -- Clear blank space
-autocmd({"BufWritePre"}, {
-    group = StivarchGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
-})
-
--- Save and format
-autocmd({"BufWritePre"}, {
-    group = StivarchGroup,
-    pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json"},
-    command = "Prettier",
-})
-
-autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = function()
-   require('go.format').goimports()
-  end,
-  group = format_sync_grp,
-})
+-- autocmd({"BufWritePre"}, {
+--     group = StivarchGroup,
+--     pattern = "*",
+--     command = [[%s/\s\+$//e]],
+-- })
+--
+-- -- Save and format
+-- autocmd({"BufWritePre"}, {
+--     group = StivarchGroup,
+--     pattern = {"*.js", "*.jsx", "*.ts", "*.tsx", "*.json"},
+--     command = "Prettier",
+-- })
+--
+-- autocmd("BufWritePre", {
+--   pattern = "*.go",
+--   callback = function()
+--    require('go.format').goimports()
+--   end,
+--   group = format_sync_grp,
+-- })
