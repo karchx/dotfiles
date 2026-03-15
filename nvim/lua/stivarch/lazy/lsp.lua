@@ -29,12 +29,32 @@ return { "neovim/nvim-lspconfig",
             ensure_installed = {
                 "lua_ls",
                 "gopls",
-                "rust_analyzer",
+                "clangd",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
                     require("lspconfig")[server_name].setup {
                         capabilities = capabilities
+                    }
+                end,
+                ["clangd"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.clangd.setup {
+                        capabilities = capabilities,
+                        cmd = {
+                            "clangd",
+                            "--background-index",
+                            "--clang-tidy",
+                            "--header-insertion=iwyu",
+                            "--completion-style=detailed",
+                            "--function-arg-placeholders",
+                            "--fallback-style=llvm",
+                        },
+                        init_options = {
+                            usePlaceholders = true,
+                            completeUnimported = true,
+                            clangdFileStatus = true,
+                        },
                     }
                 end,
 
@@ -68,27 +88,27 @@ return { "neovim/nvim-lspconfig",
                         }
                     }
                 end,
-                ["rust_analyzer"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.rust_analyzer.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            ["rust-analyzer"] = {
-                                check = {
-                                    enable = false,
-                                    command = "clippy", -- o "clippy"
-                                },
-                                procMacro = { enable = false },
-                                checkOnSave = {
-                                    enable = false
-                                },
-                                diagnostics = {
-                                    enable = false,
-                                },
-                            }
-                        }
-                    }
-                end,
+                -- ["rust_analyzer"] = function()
+                --     local lspconfig = require("lspconfig")
+                --     lspconfig.rust_analyzer.setup {
+                --         capabilities = capabilities,
+                --         settings = {
+                --             ["rust-analyzer"] = {
+                --                 check = {
+                --                     enable = false,
+                --                     command = "clippy", -- o "clippy"
+                --                 },
+                --                 procMacro = { enable = false },
+                --                 checkOnSave = {
+                --                     enable = false
+                --                 },
+                --                 diagnostics = {
+                --                     enable = false,
+                --                 },
+                --             }
+                --         }
+                --     }
+                -- end,
             }
         })
 
