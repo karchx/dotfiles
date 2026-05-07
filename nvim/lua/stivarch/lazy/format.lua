@@ -22,7 +22,7 @@ return { -- Autoformat
             }
         end,
         formatters_by_ft = {
-            lua = { "stylua" },
+            -- lua = { "stylua" },
             javascript = { "biome", "biome-organize-imports" },
             javascriptreact = { "biome", "biome-organize-imports" },
             typescript = { "biome", "biome-organize-imports" },

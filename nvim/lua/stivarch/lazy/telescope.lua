@@ -7,8 +7,14 @@ return {
         "nvim-lua/plenary.nvim"
     },
 
-    config = function()
-        require('telescope').setup({})
+    config = function() 
+        require('telescope').setup({
+            defaults = {
+              preview = {
+                treesitter = false,
+              },
+            },
+        })
 
         local builtin = require('telescope.builtin')
         vim.keymap.set('n', '<leader>pf', builtin.find_files, {})
