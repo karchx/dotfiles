@@ -10,7 +10,6 @@ return {
     multiline_threshold = 20, -- Evita que bloques gigantes rompan la UI
     trim_scope = 'outer',
     mode = 'cursor',
-    -- Esto es clave:
-    separator = nil, 
+    separator = nil,
   },
 }

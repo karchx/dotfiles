@@ -30,6 +30,7 @@ return { "neovim/nvim-lspconfig",
                 "lua_ls",
                 "gopls",
                 "clangd",
+                "hls",
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -88,29 +89,22 @@ return { "neovim/nvim-lspconfig",
                         }
                     }
                 end,
-                -- ["rust_analyzer"] = function()
-                --     local lspconfig = require("lspconfig")
-                --     lspconfig.rust_analyzer.setup {
-                --         capabilities = capabilities,
-                --         settings = {
-                --             ["rust-analyzer"] = {
-                --                 check = {
-                --                     enable = false,
-                --                     command = "clippy", -- o "clippy"
-                --                 },
-                --                 procMacro = { enable = false },
-                --                 checkOnSave = {
-                --                     enable = false
-                --                 },
-                --                 diagnostics = {
-                --                     enable = false,
-                --                 },
-                --             }
-                --         }
-                --     }
-                -- end,
             }
         })
+
+        vim.lsp.config.hls = vim.tbl_deep_extend("force", vim.lsp.config.hls or {}, {
+            capabilities = capabilities,
+            settings = {
+                haskell = {
+                    plugin = {
+                        importLens = {
+                            globalOn = false
+                        }
+                    }
+                }
+            }
+        })
+        vim.lsp.enable("hls")
 
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
